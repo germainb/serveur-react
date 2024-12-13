@@ -34,7 +34,7 @@ Make sure you have the following installed:
 1. Clone the repository:
    ```bash
    git clone <repository-url>
-   cd backend
+   cd react-avance-project-backend
    ```
 2. Install dependencies:
    ```bash

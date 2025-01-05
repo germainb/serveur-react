@@ -1,11 +1,4 @@
 {
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/api" }
-    ],
-    "redirects": [
-      { "source": "/(.*)", "destination": "https://vercel.community", "has": [{"type": "host", "value": "community.vercel.app"}]}
-    ],
-    "git": {
-      "deploymentEnabled": false
-    }
-  }
+	"version": 2,
+	"rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+}

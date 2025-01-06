@@ -23,16 +23,21 @@ const registerUser = async (req, res) => {
         let avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/default-profile-pic.png`;
         if (req.file) {
             avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/${req.file.filename}`;
+            let img = {
+            data: req.file.buffer,
+            contentType: req.file.mimetype
+            }
         }
-
+       
         // Create new user
-        const user = await User.create({ name, email, password, avatar });
+        const user = await User.create({ name, email, password, avatar,img });
 
         res.status(201).json({
             _id: user._id,
             name: user.name,
             email: user.email,
             avatar: user.avatar,
+            img: user.img,
             token: generateToken(user._id),
         });
     } catch (err) {
@@ -56,6 +61,7 @@ const loginUser = async (req, res) => {
             email: user.email,
             token: generateToken(user.id),
             avatar: user.avatar,
+            img: user.img
         });
     } catch (err) {
         console.error(err);

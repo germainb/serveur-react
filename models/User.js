@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
   avatar: {
     type: String,
   },
+  img: {
+    data: Buffer,
+    contentType: String
+  }
 }, {
   timestamps: true,
 });

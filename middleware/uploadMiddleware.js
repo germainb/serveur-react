@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
-
+/*
 // Define the upload directory
 const uploadDir = path.join(__dirname, '..', 'uploads', 'avatars');
 
@@ -23,5 +23,5 @@ const storage = multer.diskStorage({
 
 // Multer middleware for avatar upload
 const upload = multer({ storage: storage });
-
+*/
 module.exports = upload;

@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/register', upload.single('avatar'), registerUser);
 router.post('/login', loginUser);
 router.get('/profile', authMiddleware, getMe);
-router.get('/:id', getUserById);
+router.get('/users', getUserById);
 
 
 module.exports = router;

@@ -4,7 +4,7 @@ const upload = require('../middleware/uploadMiddleware');
 const authMiddleware = require('../middleware/authMiddleware');
 const router = express.Router();
 
-router.post('/register', registerUser);
+router.post('/register', upload.single('avatar'), registerUser);
 router.post('/login', loginUser);
 router.get('/profile', authMiddleware, getMe);
 

@@ -18,7 +18,7 @@ const registerUser = async (req, res) => {
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
         }
-        var img = "";
+        var img = [];
         var contentType = "";
         // Handle avatar upload
         let avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/default-profile-pic.png`;

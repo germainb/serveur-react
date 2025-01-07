@@ -18,19 +18,18 @@ const registerUser = async (req, res) => {
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
         }
-        var img = {};
+        var img = "";
+        var contentType = "";
         // Handle avatar upload
         let avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/default-profile-pic.png`;
         if (req.file) {
             avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/${req.file.filename}`;
-            img = {
-            data: req.file.buffer,
-            contentType: req.file.mimetype
+            img = req.file.buffer;
+            contentType = req.file.mimetype;
             }
-        }
        
         // Create new user
-        const user = await User.create({ name, email, password, avatar, img });
+        const user = await User.create({ name, email, password, avatar, img, contentType });
 
         res.status(201).json({
             _id: user._id,
@@ -38,6 +37,7 @@ const registerUser = async (req, res) => {
             email: user.email,
             avatar: user.avatar,
             img: user.img,
+            contentType: user.contentType,
             token: generateToken(user._id)
         });
     } catch (err) {
@@ -61,7 +61,8 @@ const loginUser = async (req, res) => {
             email: user.email,
             token: generateToken(user.id),
             avatar: user.avatar,
-            img: user.img
+            img: user.img,
+            contentType: user.contentType
         });
     } catch (err) {
         console.error(err);

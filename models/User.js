@@ -20,8 +20,10 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   img: {
-    data: { type: Buffer},
-    contentType: { type: String},
+    type: Buffer,
+  },
+  contentType: { 
+    type: String,
   },
 }, {
   timestamps: true,

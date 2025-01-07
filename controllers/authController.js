@@ -9,7 +9,7 @@ const generateToken = (user) => {
 
 // Signup controller
 const registerUser = async (req, res) => {
-    //console.log(`request body ${req.body}`);
+    console.log(`request body ${req.body}`);
     try {
         const { name, email, password } = req.body;
 

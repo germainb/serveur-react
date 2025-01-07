@@ -26,8 +26,7 @@ router.post('/:id/like', authMiddleware, likeThread);
 // Dislike a thread
 router.post('/:id/dislike', authMiddleware, dislikeThread);
 
-// get all threads of a user
-router.get('/users/:userId/threads', authMiddleware, getUserThreads);
+
 
 // make a thread private
 router.put('/:threadId/private', authMiddleware, toggleThreadPrivacy);

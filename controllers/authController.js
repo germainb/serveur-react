@@ -83,6 +83,7 @@ const getMe = async (req, res) => {
 
 // Get user profile
 const getUserById = async (req, res) => {
+    console.log("Request:" +req);
     try {
         const user = await User.findById(req.params.id);
         res.json(user);

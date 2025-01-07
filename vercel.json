@@ -10,10 +10,9 @@
    }
   ],
   "functions": {
-    "server.js": {
+    "./server.js": {
       "memory": 3009,
       "maxDuration": 30
     }
   }
  }
- 

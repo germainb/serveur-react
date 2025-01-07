@@ -64,6 +64,7 @@ const loginUser = async (req, res) => {
             avatar: user.avatar,
             img: user.img
         });
+        console.log("image:"+user.img);
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error' + err });

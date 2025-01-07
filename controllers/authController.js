@@ -24,8 +24,10 @@ const registerUser = async (req, res) => {
         let avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/default-profile-pic.png`;
         if (req.file) {
             avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/${req.file.filename}`;
-            img = req.file.buffer;
-            contentType = req.file.mimetype;
+            img = {
+                data: req.file.buffer,
+                contentType: req.file.mimetype
+                }
             }
        
         // Create new user
@@ -37,7 +39,6 @@ const registerUser = async (req, res) => {
             email: user.email,
             avatar: user.avatar,
             img: user.img,
-            contentType: user.contentType,
             token: generateToken(user._id)
         });
     } catch (err) {
@@ -66,7 +67,7 @@ const loginUser = async (req, res) => {
         });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Server error' + err });
     }
 };
 

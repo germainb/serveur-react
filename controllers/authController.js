@@ -81,5 +81,15 @@ const getMe = async (req, res) => {
     }
 };
 
+// Get user profile
+const getUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.user);
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
 
 module.exports = { registerUser, loginUser, getMe };

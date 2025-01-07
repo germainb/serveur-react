@@ -24,8 +24,8 @@ const registerUser = async (req, res) => {
         if (req.file) {
             avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/${req.file.filename}`;
             img = {
-            data: req.file.buffer,
-            contentType: req.file.mimetype
+            "data": req.file.buffer,
+            "contentType": req.file.mimetype
             }
         }
        
@@ -38,10 +38,10 @@ const registerUser = async (req, res) => {
             email: user.email,
             avatar: user.avatar,
             img: user.img,
-            token: generateToken(user._id),
+            token: generateToken(user._id)
         });
     } catch (err) {
-        res.status(500).json({ message: 'Server error' + err });
+        res.status(500).json({ message: 'Server error:' + err });
     }
 };
 

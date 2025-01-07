@@ -7,6 +7,6 @@ const router = express.Router();
 router.post('/register', upload.single('avatar'), registerUser);
 router.post('/login', loginUser);
 router.get('/profile', authMiddleware, getMe);
-router.get('/users', authMiddleware, getUser);
+router.get('/users/:userId', authMiddleware, getUser);
 
 module.exports = router;

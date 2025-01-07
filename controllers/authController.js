@@ -82,7 +82,7 @@ const getMe = async (req, res) => {
 };
 
 // Get user profile
-const getUser = async (req, res) => {
+const getUserById = async (req, res) => {
     try {
         const user = await User.findById(req.user);
         res.json(user);
@@ -92,4 +92,4 @@ const getUser = async (req, res) => {
 };
 
 
-module.exports = { registerUser, loginUser, getMe, getUser };
+module.exports = { registerUser, loginUser, getMe, getUserById };

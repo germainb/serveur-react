@@ -24,8 +24,8 @@ const registerUser = async (req, res) => {
         if (req.file) {
             avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/${req.file.filename}`;
             img = {
-            "data": req.file.buffer,
-            "contentType": req.file.mimetype
+            data: req.file.buffer,
+            contentType: req.file.mimetype
             }
         }
        

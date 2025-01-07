@@ -6,18 +6,19 @@ const multer = require('multer');
 const uploadDir = path.join(__dirname, '..','uploads', 'avatars');
 
 // Create the directory if it doesn't exist
+/*
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
-
+*/
 // Set up multer storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, uploadDir);  // Save to the 'uploads/avatars' directory
+    //cb(null, uploadDir);  // Save to the 'uploads/avatars' directory
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + file.originalname;
-    cb(null, uniqueSuffix); // Save file with a unique name
+    //cb(null, uniqueSuffix); // Save file with a unique name
   },
 });
 

@@ -30,7 +30,7 @@ const registerUser = async (req, res) => {
         }
        
         // Create new user
-        const user = await User.create({ name, email, password, avatar,img });
+        const user = await User.create({ name, email, password, avatar });
 
         res.status(201).json({
             _id: user._id,

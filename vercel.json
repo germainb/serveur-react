@@ -8,5 +8,13 @@
     "src": "/(.*)",
     "dest": "/server.js"
    }
+  ],
+  "functions": [
+    {
+      "server.js":{
+        "memory": 4096,
+        "maxDuration": 60
+      }
+    }
   ]
  }

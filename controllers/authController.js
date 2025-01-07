@@ -62,8 +62,7 @@ const loginUser = async (req, res) => {
             email: user.email,
             token: generateToken(user.id),
             avatar: user.avatar,
-            img: user.img,
-            contentType: user.contentType
+            img: user.img
         });
     } catch (err) {
         console.error(err);

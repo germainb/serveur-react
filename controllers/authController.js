@@ -1,8 +1,8 @@
-import fs from 'fs';
 
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { json } = require('body-parser');
+const fs = require('node:fs');
 
 // Generate JWT
 const generateToken = (user) => {

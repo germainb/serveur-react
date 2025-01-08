@@ -40,6 +40,7 @@ const getThreadById = async (req, res) => {
 
 // Controller for creating a new thread
 const createThread = async (req, res) => {
+  console.log("CreateThread:"+JSON.stringify(req) )
   const { title, content, tags, isPrivate } = req.body;
 
   try {

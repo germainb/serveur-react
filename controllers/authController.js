@@ -32,7 +32,7 @@ const registerUser = async (req, res) => {
                 }
             }
         else {
-            let avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/default-profile-pic.png`;
+            avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/default-profile-pic.png`;
             let base64 = fs.readFileSync(path.join(__dirname,'../uploads/avatars/default-profile-pic.png'), 'utf8');
             //let base64 = fs.readFileSync(avatar, {encoding: 'base64'});
             const buffer = Buffer.from(base64, "base64");

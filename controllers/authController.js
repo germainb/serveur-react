@@ -23,7 +23,6 @@ const registerUser = async (req, res) => {
         var img = [];
         var contentType = "";
         // Handle avatar upload
-        let avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/default-profile-pic.png`;
         if (req.file) {
             avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/${req.file.filename}`;
             img = {
@@ -32,6 +31,7 @@ const registerUser = async (req, res) => {
                 }
             }
         else {
+            let avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/default-profile-pic.png`;
             let image = fs.readFileSync(avatar, 'utf8');
             img = {
                 data: image.file.buffer,

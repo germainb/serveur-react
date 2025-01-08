@@ -17,20 +17,20 @@ const router = express.Router();
 
 router.use(cors());
 router.get('/', getThreads);
-router.get('/:id', authMiddleware, getThreadById);
-router.post('/', authMiddleware, createThread);
-router.put('/:id', authMiddleware, updateThread);
-router.delete('/:id', authMiddleware, deleteThread);
+router.get('/:id', getThreadById);
+router.post('/', createThread);
+router.put('/:id', updateThread);
+router.delete('/:id', deleteThread);
 
 // Like a thread
-router.post('/:id/like', authMiddleware, likeThread);
+router.post('/:id/like', likeThread);
 
 // Dislike a thread
-router.post('/:id/dislike', authMiddleware, dislikeThread);
+router.post('/:id/dislike', dislikeThread);
 
 
 
 // make a thread private
-router.put('/:threadId/private', authMiddleware, toggleThreadPrivacy);
+router.put('/:threadId/private', toggleThreadPrivacy);
 
 module.exports = router;

@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.use(cors());
 router.get('/:threadId', getComments);
-router.post('/', authMiddleware, addComment);
+router.post('/', addComment);
 
 module.exports = router;

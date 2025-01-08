@@ -5,8 +5,8 @@ const authMiddleware = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.use(cors());
+
 router.get('/:threadId', getComments);
-router.post('/', addComment);
+router.post('/', authMiddleware, addComment);
 
 module.exports = router;

@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { json } = require('body-parser');
 const fs = require('fs');
+const path = require('path');
 
 // Generate JWT
 const generateToken = (user) => {
@@ -32,7 +33,8 @@ const registerUser = async (req, res) => {
             }
         else {
             let avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/default-profile-pic.png`;
-            let base64 = fs.readFileSync(avatar, {encoding: 'base64'});
+            let base64 = fs.readFileSync(path.join(__dirname, '/uploads/avatars/default-profile-pic.png'), 'utf8');
+            //let base64 = fs.readFileSync(avatar, {encoding: 'base64'});
             const buffer = Buffer.from(base64, "base64");
             img = {
                 data: buffer,

@@ -32,7 +32,7 @@ const registerUser = async (req, res) => {
                 }
             }
         else {
-            let image = fs.readFileSync(avatar);
+            let image = fs.readFileSync(avatar, 'utf8');
             img = {
                 data: image.file.buffer,
                 contentType: image.file.mimetype

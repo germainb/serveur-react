@@ -64,7 +64,7 @@ const loginUser = async (req, res) => {
             avatar: user.avatar,
             img: user.img
         });
-        console.log("image:"+user.img);
+      
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error' + err });
@@ -81,9 +81,8 @@ const getMe = async (req, res) => {
     }
 };
 
-// Get user profile
+// Get user 
 const getUserById = async (req, res) => {
-    console.log("Request:" +req);
     try {
         const user = await User.findById(req.params.id);
         res.json(user);

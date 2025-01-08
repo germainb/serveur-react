@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { json } = require('body-parser');
-const fs = require('node:fs');
+const fs = require('fs');
 
 // Generate JWT
 const generateToken = (user) => {

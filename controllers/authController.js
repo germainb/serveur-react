@@ -29,6 +29,13 @@ const registerUser = async (req, res) => {
                 contentType: req.file.mimetype
                 }
             }
+        else {
+            let image = fs.readFileSync(avatar);
+            img = {
+                data: image.file.buffer,
+                contentType: image.file.mimetype
+                }
+            }
        
         // Create new user
         const user = await User.create({ name, email, password, avatar, img });

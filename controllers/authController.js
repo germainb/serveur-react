@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { json } = require('body-parser');

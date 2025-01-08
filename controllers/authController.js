@@ -32,11 +32,11 @@ const registerUser = async (req, res) => {
             }
         else {
             let avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/default-profile-pic.png`;
-            let imddataaage = () => fs.readFileSync(require.resolve(avatar), { encoding: "utf8" });
-            let image = createImageBitmap(new Blob([data]));
+            let base64 = () => fs.readFileSync(require.resolve(avatar), { encoding: "utf8" });
+            const buffer = Buffer.from(base64, "base64");
             img = {
-                data: image.file.buffer,
-                contentType: image.file.mimetype
+                data: buffer,
+                contentType: 'image/png'
                 }
             }
        

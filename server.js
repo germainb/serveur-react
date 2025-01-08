@@ -14,7 +14,8 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors({ origin: process.env.CLIENT_URL }));
+
+app.use(cors());
 app.use(express.json());
 
 // Routes

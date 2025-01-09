@@ -24,11 +24,11 @@ const getThreadById = async (req, res) => {
       });
 
     if (!thread) {
-      return res.status(404).json({ message: "Thread not found" });
+      return res.status(404).json({ message: "Message introuvable" });
     }
 
     if (thread.isPrivate && thread.author.toString() !== req.user) {
-      return res.status(403).json({ message: "Access denied" });
+      return res.status(403).json({ message: "Accès refusé" });
     }
 
     res.json(thread);
@@ -57,7 +57,7 @@ const createThread = async (req, res) => {
     await newThread.save();
 
     res.status(201).json({
-      message: "Thread created successfully",
+      message: "Message ajouté avec succès!",
       thread: newThread,
     });
   } catch (error) {
@@ -71,10 +71,10 @@ const updateThread = async (req, res) => {
   try {
     const thread = await Thread.findById(req.params.id);
 
-    if (!thread) return res.status(404).json({ message: "Thread not found" });
+    if (!thread) return res.status(404).json({ message: "Message introuvable" });
 
     if (thread.author.toString() !== req.user) {
-      return res.status(403).json({ message: "Access denied" });
+      return res.status(403).json({ message: "Accès refusé" });
     }
 
     const { title, content, isPrivate, tags } = req.body;
@@ -98,17 +98,17 @@ const deleteThread = async (req, res) => {
     const thread = await Thread.findById(req.params.id);
 
     if (!thread) {
-      return res.status(404).json({ message: "Thread not found" });
+      return res.status(404).json({ message: "Message introuvable" });
     }
 
     // Ensure the logged-in user is the author of the thread
     if (thread.author.toString() !== req.user) {
-      return res.status(403).json({ message: "Access denied" });
+      return res.status(403).json({ message: "Accès refusé" });
     }
 
     // Use findByIdAndDelete for consistency
     await Thread.findByIdAndDelete(req.params.id);
-    res.json({ message: "Thread removed successfully" });
+    res.json({ message: "Message supprimé avec succès!" });
   } catch (err) {
     console.error("Error deleting thread:", err);
     res.status(500).json({ message: "Server error" });
@@ -123,14 +123,14 @@ const likeThread = async (req, res) => {
     const thread = await Thread.findById(id).populate("author", "name avatar");
 
     if (!thread) {
-      return res.status(404).json({ message: "Thread not found" });
+      return res.status(404).json({ message: "Message introuvable" });
     }
 
     // Check if the user already liked the thread
     if (thread.likes.includes(userId)) {
       return res
         .status(400)
-        .json({ message: "You have already liked this thread" });
+        .json({ message: "Vous aimez déja ce message" });
     }
 
     // Remove from dislikes if exists
@@ -143,7 +143,7 @@ const likeThread = async (req, res) => {
 
     await thread.save();
 
-    res.status(200).json({ message: "Thread liked", thread });
+    res.status(200).json({ message: "Message aimé", thread });
   } catch (error) {
     console.error("Error liking thread:", error);
     res.status(500).json({ message: "Server error" });
@@ -159,14 +159,14 @@ const dislikeThread = async (req, res) => {
     const thread = await Thread.findById(id).populate("author", "name avatar");
 
     if (!thread) {
-      return res.status(404).json({ message: "Thread not found" });
+      return res.status(404).json({ message: "Message introuvable" });
     }
 
     // Check if the user already disliked the thread
     if (thread.dislikes.includes(userId)) {
       return res
         .status(400)
-        .json({ message: "You have already disliked this thread" });
+        .json({ message: "Vous n'aimez déja pas ce message" });
     }
 
     // Remove from likes if exists
@@ -177,7 +177,7 @@ const dislikeThread = async (req, res) => {
 
     await thread.save();
 
-    res.status(200).json({ message: "Thread disliked", thread });
+    res.status(200).json({ message: "Message non aimé", thread });
   } catch (error) {
     console.error("Error disliking thread:", error);
     res.status(500).json({ message: "Server error" });

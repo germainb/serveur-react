@@ -102,5 +102,28 @@ const getUserById = async (req, res) => {
     }
 };
 
+// Signup controller
+const updateAvatar = async (req, res) => {
+    console.dir(req.body);
+    try {
+        const user = await User.findById(req.user);
 
-module.exports = { registerUser, loginUser, getMe, getUserById };
+        var img = [];
+        var contentType = "";
+        // Handle avatar upload
+        if (req.file) {
+            user.img = {
+                data: req.file.buffer,
+                contentType: req.file.mimetype
+                }
+            }
+       
+        await user.save();
+        res.json(user);
+        
+    } catch (err) {
+        res.status(500).json({ message: 'Server error:' + err });
+    }
+};
+
+module.exports = { registerUser, loginUser, getMe, getUserById, updateAvatar };

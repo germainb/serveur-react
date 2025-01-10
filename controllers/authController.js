@@ -111,12 +111,12 @@ const updateAvatar = async (req, res) => {
         var img = [];
         var contentType = "";
         // Handle avatar upload
-        if (req.file) {
+     
             user.img = {
                 data: req.file.buffer,
                 contentType: req.file.mimetype
                 }
-            }
+   
        
         await user.save();
         res.json(user);

@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.use(cors())
 router.post('/register', upload.single('avatar'), registerUser);
-router.post('/updateAvatar', authMiddleware, upload.single('avatar'), updateAvatar);
+router.post('/updateAvatar/:id', upload.single('avatar'), updateAvatar);
 router.post('/login', loginUser);
 router.get('/profile', authMiddleware, getMe);
 router.get('/:id', getUserById);

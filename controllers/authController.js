@@ -106,7 +106,7 @@ const getUserById = async (req, res) => {
 const updateAvatar = async (req, res) => {
     console.dir(req.body);
     try {
-        const user = await User.findById(req.user);
+        const user = await User.findById(req.id);
 
         var img = [];
         var contentType = "";
@@ -120,7 +120,7 @@ const updateAvatar = async (req, res) => {
        
         await user.save();
         res.json(user);
-        
+
     } catch (err) {
         res.status(500).json({ message: 'Server error:' + err });
     }

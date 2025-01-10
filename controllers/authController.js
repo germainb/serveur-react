@@ -122,7 +122,7 @@ const updateAvatar = async (req, res) => {
         res.json(user);
 
     } catch (err) {
-        res.status(500).json({ message: 'Server error:' + JSON.stringify(req) });
+        res.status(500).json({ message: 'Server error:' + req });
     }
 };
 

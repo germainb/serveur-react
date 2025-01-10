@@ -106,7 +106,7 @@ const getUserById = async (req, res) => {
 const updateAvatar = async (req, res) => {
     console.dir(req.body);
     try {
-        const user = await User.findById(req.id);
+        const user = await User.findById(req.params.id);
 
         var img = [];
         var contentType = "";

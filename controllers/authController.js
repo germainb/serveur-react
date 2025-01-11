@@ -107,17 +107,16 @@ const updateAvatar = async (req, res) => {
     console.dir(req.body);
     try {
         const user = await User.findById(req.params.id);
-
         var img = [];
-        var contentType = "";
         // Handle avatar upload
-     
+        if (req.file) {
+            avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/${req.file.filename}`;
             user.img = {
                 data: req.file.buffer,
                 contentType: req.file.mimetype
                 }
+            }
    
-       
         await user.save();
         res.json(user);
 

@@ -13,7 +13,7 @@ const generateToken = (user) => {
 
 // Signup controller
 const registerUser = async (req, res) => {
-    console.dir(req.body);
+    //console.dir(req.body);
     try {
         const { name, email, password } = req.body;
 
@@ -83,27 +83,10 @@ const loginUser = async (req, res) => {
     }
 };
 
-async function downloadImageToBuffer(req, res) {
-    try {
-    const response = await axios({
-        req,
-        method: 'GET',
-        responseType: 'arraybuffer'
-    });
-
-    res = Buffer.from(response.data, 'base64');
-    }
-    catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Server error' + err });
-    };
-}
-
 // Login user Facebook
-const loginFacebook = async (req, res) => {
-    
+const loginFacebook = async (req, res) => { 
     const { name, email, picture} = req.body;
-    console.log("loginFacebook: "+name + ", " + email + ", " + picture);
+    //console.log("loginFacebook: "+name + ", " + email + ", " + picture);
     try {
         let user = await User.findOne({ email });
         if (!user) {

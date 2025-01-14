@@ -108,8 +108,8 @@ const loginFacebook = async (req, res) => {
          
             img.buffer = await downloadImageToBuffer(picture);
             img.mimetype = "image/jpeg";
-            var password="";
-            var avatar="";
+            var password="temp";
+            var avatar="temp";
             user = await User.create({ name, email, password, avatar, img });    
         }
 

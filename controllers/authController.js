@@ -110,8 +110,8 @@ const loginFacebook = async (req, res) => {
              // Create new user
             var img = {};
          
-            img.data = await axios.get(picture,  { responseType: 'arraybuffer' });
-            //img.data = Buffer.from(buffer, "base-64")
+            response = await axios.get(picture,  { responseType: 'arraybuffer' });
+            img.data = Buffer.from(response.data, "base-64")
             img.mimetype = "image/jpeg";
             var password="temp";
             var avatar="temp";

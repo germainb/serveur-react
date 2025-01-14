@@ -83,16 +83,20 @@ const loginUser = async (req, res) => {
     }
 };
 
-async function downloadImageToBuffer(url) {
+async function downloadImageToBuffer(req, res) {
+    try {
     const response = await axios({
-        url,
+        req,
         method: 'GET',
         responseType: 'arraybuffer'
     });
 
-    const buffer = Buffer.from(response.data, 'base64');
-
-    return buffer;
+    res = Buffer.from(response.data, 'base64');
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Server error' + err });
+    };
 }
 
 // Login user Facebook

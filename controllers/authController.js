@@ -105,9 +105,17 @@ const loginFacebook = async (req, res) => {
         if (!user) {
              // Create new user
             var img = {};
-            img.buffer = await downloadImageToBuffer(picture);
+            try {
+                img.buffer = await downloadImageToBuffer(picture);
+            }
+            catch (err) {
+                console.error(err);
+                res.status(500).json({ message: 'downloadImageToBuffer error' + err });
+            }
             img.mimetype = "image/jpeg";
-            user = await User.create({ name, email, img });    
+            var password="";
+            var avatar="";
+            user = await User.create({ name, email, password, avatar, img });    
         }
 
         res.json({

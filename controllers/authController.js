@@ -97,21 +97,16 @@ async function downloadImageToBuffer(url) {
 
 // Login user Facebook
 const loginFacebook = async (req, res) => {
-    console.log("loginFacebook: "+req.body);
+    
     const { name, email, picture} = req.body;
-
+    console.log("loginFacebook: "+name + ", " + email + ", " + picture);
     try {
         const user = await User.findOne({ email });
         if (!user) {
              // Create new user
             var img = {};
-            try {
-                img.buffer = await downloadImageToBuffer(picture);
-            }
-            catch (err) {
-                console.error(err);
-                res.status(500).json({ message: 'downloadImageToBuffer error' + err });
-            }
+         
+            img.buffer = await downloadImageToBuffer(picture);
             img.mimetype = "image/jpeg";
             var password="";
             var avatar="";

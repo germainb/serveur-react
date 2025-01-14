@@ -4,6 +4,7 @@ const User = require('../models/User');
 const { json } = require('body-parser');
 const fs = require('fs');
 const path = require('path');
+const axios = require('axios');
 
 // Generate JWT
 const generateToken = (user) => {
@@ -81,8 +82,6 @@ const loginUser = async (req, res) => {
         res.status(500).json({ message: 'Server error' + err });
     }
 };
-
-const axios = require('axios');
 
 async function downloadImageToBuffer(url) {
     const response = await axios({

@@ -82,6 +82,49 @@ const loginUser = async (req, res) => {
     }
 };
 
+const axios = require('axios');
+
+async function downloadImageToBuffer(url) {
+    const response = await axios({
+        url,
+        method: 'GET',
+        responseType: 'arraybuffer'
+    });
+
+    const buffer = Buffer.from(response.data, 'binary');
+
+    return buffer;
+}
+
+// Login user Facebook
+const loginFacebook = async (req, res) => {
+    const { name, email, picture} = req.body;
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+             // Create new user
+            var img = {};
+            img.buffer = await downloadImageToBuffer(picture);
+            img.mimetype = "image/jpeg";
+            user = await User.create({ name, email, img });    
+        }
+
+        res.json({
+            _id: user.id,
+            name: user.name,
+            email: user.email,
+            token: generateToken(user.id),
+            avatar: user.avatar,
+            img: user.img
+        });
+      
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Server error' + err });
+    }
+};
+
 // Get user profile
 const getMe = async (req, res) => {
     try {
@@ -110,7 +153,7 @@ const updateAvatar = async (req, res) => {
         var img = [];
         // Handle avatar upload
         if (req.file) {
-            avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/${req.file.filename}`;
+            user.avatar = `${req.protocol}://${req.get('host')}/uploads/avatars/${req.file.filename}`;
             user.img = {
                 data: req.file.buffer,
                 contentType: req.file.mimetype
@@ -125,4 +168,4 @@ const updateAvatar = async (req, res) => {
     }
 };
 
-module.exports = { registerUser, loginUser, getMe, getUserById, updateAvatar };
+module.exports = { registerUser, loginUser, loginFacebook, getMe, getUserById, updateAvatar };

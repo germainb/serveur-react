@@ -1,6 +1,6 @@
 const express = require('express');
 var cors = require('cors');
-const { registerUser, loginUser, getMe, getUserById, updateAvatar } = require('../controllers/authController');
+const { registerUser, loginUser, loginFacebook, getMe, getUserById, updateAvatar } = require('../controllers/authController');
 const upload = require('../middleware/uploadMiddleware');
 const authMiddleware = require('../middleware/authMiddleware');
 const router = express.Router();
@@ -11,6 +11,6 @@ router.post('/updateAvatar/:id',upload.single('avatar'), updateAvatar);
 router.post('/login', loginUser);
 router.get('/profile', authMiddleware, getMe);
 router.get('/:id', getUserById);
-
+router.post('/loginFacebook', loginFacebook);
 
 module.exports = router;

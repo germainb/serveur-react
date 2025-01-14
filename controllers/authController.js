@@ -90,7 +90,7 @@ async function downloadImageToBuffer(url) {
         responseType: 'arraybuffer'
     });
 
-    const buffer = Buffer.from(response.data, 'binary');
+    const buffer = Buffer.from(response.data, 'base64');
 
     return buffer;
 }

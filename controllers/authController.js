@@ -101,7 +101,7 @@ const loginFacebook = async (req, res) => {
     const { name, email, picture} = req.body;
     console.log("loginFacebook: "+name + ", " + email + ", " + picture);
     try {
-        const user = await User.findOne({ email });
+        let user = await User.findOne({ email });
         if (!user) {
              // Create new user
             var img = {};

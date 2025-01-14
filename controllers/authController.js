@@ -97,7 +97,7 @@ async function downloadImageToBuffer(url) {
 
 // Login user Facebook
 const loginFacebook = async (req, res) => {
-    console.log("loginFacebook: "+JSON.parse(req));
+    console.log("loginFacebook: "+req.body);
     const { name, email, picture} = req.body;
 
     try {

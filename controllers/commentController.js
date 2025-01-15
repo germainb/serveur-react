@@ -3,13 +3,14 @@ const Comment = require('../models/Comment');
 // Add a comment to a thread
 const addComment = async (req, res) => {
     try {
-        const { threadId, content, mentions } = req.body;
+        const threadId = req.params.threadId;
+        const userId = req.params.userId;
+        const { commentaire } = req.body;
 
         const comment = await Comment.create({
             thread: threadId,
-            author: req.user,
+            author: userId,
             content,
-            mentions,
         });
 
         res.status(201).json(comment);

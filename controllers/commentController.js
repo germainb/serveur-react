@@ -24,7 +24,7 @@ const addComment = async (req, res) => {
 const getComments = async (req, res) => {
     try {
         const comments = await Comment.find({ thread: req.params.threadId })
-            .populate('author')
+            .populate('users')
 
         res.json(comments);
     } catch (err) {

@@ -25,11 +25,11 @@ const getComments = async (req, res) => {
     try {
         const comments = await Comment.find({ thread: req.params.threadId })
             .populate('author', 'name')
-            .populate('mentions', 'name');
+            .populate('author', 'img');
 
         res.json(comments);
     } catch (err) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Server error'+err });
     }
 };
 

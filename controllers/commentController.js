@@ -12,10 +12,10 @@ const addComment = async (req, res) => {
             author: userId,
             content: commentaire
         });
-
+        await comment.save();
         res.status(201).json(comment);
     } catch (err) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Server error:'+err });
     }
 };
 

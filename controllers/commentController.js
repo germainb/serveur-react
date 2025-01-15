@@ -29,7 +29,7 @@ const getComments = async (req, res) => {
     ])
         res.json(comments);
     } catch (err) {
-        res.status(500).json({ message: 'Server error'+err });
+        res.status(500).json({ message: 'Server error'+err + "Request:" + req + "Response:" + res});
     }
 };
 

@@ -1,5 +1,6 @@
 const Comment = require('../models/Comment');
 const mongoose = require('mongoose');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 // Add a comment to a thread
 const addComment = async (req, res) => {
@@ -25,7 +26,7 @@ const addComment = async (req, res) => {
 const getComments = async (req, res) => {
     try {
         const comments = await Comment.aggregate([
-            { $match: {thread: new mongoose.ObjectId(req.params.threadId)}},
+            { $match: {thread: new ObjectId(req.params.threadId)}},
             { $lookup: { from: 'users', localField: 'author', foreignField: '_id', as: 'user' } }
     ])
         res.json(comments);

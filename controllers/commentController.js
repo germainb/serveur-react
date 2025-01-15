@@ -10,7 +10,7 @@ const addComment = async (req, res) => {
         const comment = await Comment.create({
             thread: threadId,
             author: userId,
-            content,
+            content: commentaire
         });
 
         res.status(201).json(comment);

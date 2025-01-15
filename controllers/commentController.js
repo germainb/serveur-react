@@ -6,7 +6,7 @@ const addComment = async (req, res) => {
         const threadId = req.params.threadId;
         const userId = req.params.userId;
         const { commentaire } = req.body;
-        console.log("Request body:"+req.body);
+        console.log("Commentaire: "+commentaire);
 
         const comment = await Comment.create({
             thread: threadId,

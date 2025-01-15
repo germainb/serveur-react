@@ -28,7 +28,7 @@ const getComments = async (req, res) => {
             { $lookup: { from: 'users', localField: 'author', foreignField: '_id', as: 'user' } }
     ])
         res.json(comments);
-        console.log("Request:" + JSON.parse(req) + "Response:" + JSON.parse(res));
+        console.log("Request:" + req.params.threadId + "Response:" +res.body);
     } catch (err) {
         res.status(500).json({ message: 'Server error'+err + "Request:" + req + "Response:" + res});
     }

@@ -23,9 +23,10 @@ const addComment = async (req, res) => {
 // Get all comments for a thread
 const getComments = async (req, res) => {
     try {
-        const comments = await Comment.findById(req.params.id).aggregate([
+        const comments = await Comment.aggregate([
         {
             $lookup: {
+                match: req.params.id,
                 from: "users",
                 localField: "author",
                 foreignField: "_id",

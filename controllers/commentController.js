@@ -25,7 +25,7 @@ const addComment = async (req, res) => {
 const getComments = async (req, res) => {
     try {
         const comments = await Comment.aggregate([
-            { $match: {thread: mongoose.Types.ObjectId(req.params.threadId)}},
+            { $match: {thread: new mongoose.ObjectId(req.params.threadId)}},
             { $lookup: { from: 'users', localField: 'author', foreignField: '_id', as: 'user' } }
     ])
         res.json(comments);

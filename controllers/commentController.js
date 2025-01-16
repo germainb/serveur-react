@@ -50,7 +50,7 @@ const sendEmail = async (req, res) => {
             from: process.env.EMAIL,
             to:  email,
             subject: 'Nouveau commentaire sur Face de bouc',
-            html: nom + " a ajouté un commentaire à votre message:<br>" + commentaire + "<br>Vous pouvez répondre à cette adresse:<br>https://client-react-ivory.vercel.app/"
+            html: nom + " a ajouté un commentaire à votre message:<br>" + commentaire + "<br>Vous pouvez répondre à cette adresse:<br><a href='https://client-react-ivory.vercel.app/'>https://client-react-ivory.vercel.app/</a>"
           };
           
           transporter.sendMail(mailOptions, function(error, info){

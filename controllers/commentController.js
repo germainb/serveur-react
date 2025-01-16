@@ -1,6 +1,5 @@
 const Comment = require('../models/Comment');
-const mongoose = require('mongoose');
-const ObjectId = require('mongoose').Types.ObjectId;
+const User = require('../models/User');
 
 // Add a comment to a thread
 const addComment = async (req, res) => {

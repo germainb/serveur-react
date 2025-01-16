@@ -24,7 +24,7 @@ const addComment = async (req, res) => {
 // Get all comments for a thread
 const getComments = async (req, res) => {
     try {
-        const comments = await Comment.find({thread: req.params.threadId}).populate('users');
+        const comments = await Comment.find({thread: req.params.threadId}).populate('author');
         res.json(comments);
         console.log("Request:" + req.params.threadId + "Response:" +res);
     } catch (err) {

@@ -4,7 +4,7 @@ const Thread = require("../models/Thread");
 const getThreads = async (req, res) => {
   try {
     const threads = await Thread.find({ isPrivate: false })
-      .populate("author", "name avatar")
+      .populate("author")
       .sort({ createdAt: -1 });
     res.json(threads);
   } catch (err) {

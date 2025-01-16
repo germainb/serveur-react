@@ -25,9 +25,9 @@ const addComment = async (req, res) => {
 const getComments = async (req, res) => {
     try {
         const comments = await Comment.find({thread: req.params.threadId}).populate({
-            path: "comments", // populate blogs
+            path: "author", // populate blogs
             populate: {
-               path: "author" // in blogs, populate comments
+               path: "users" // in blogs, populate comments
             }
           });
         res.json(comments);

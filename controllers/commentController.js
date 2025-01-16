@@ -37,9 +37,12 @@ const sendEmail = async (req, res) => {
         const { commentaire, email, nom } = req.body;
         var transporter = nodemailer.createTransport({
             service: 'gmail',
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true,
             auth: {
               user: process.env.EMAIL,
-              pass: process.env.EMAIL_PASSWORD
+              pass: process.env.EMAIL_PASSWORD,
             }
           });
           
@@ -47,7 +50,7 @@ const sendEmail = async (req, res) => {
             from: process.env.EMAIL,
             to:  email,
             subject: 'Nouveau commentaire sur Face de bouc',
-            text: nom + " a ajouté un commentaire à votre message:<br>" + commentaire + "<br>Vous pouvez répondre à cette adresse:<br>https://client-react-ivory.vercel.app/"
+            html: nom + " a ajouté un commentaire à votre message:<br>" + commentaire + "<br>Vous pouvez répondre à cette adresse:<br>https://client-react-ivory.vercel.app/"
           };
           
           transporter.sendMail(mailOptions, function(error, info){

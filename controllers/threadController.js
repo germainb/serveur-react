@@ -5,6 +5,8 @@ const getThreads = async (req, res) => {
   try {
     const threads = await Thread.find({ isPrivate: false })
       .populate("author")
+      .populate("likes")
+      .populate("dislikes")
       .sort({ createdAt: -1 });
     res.json(threads);
   } catch (err) {
